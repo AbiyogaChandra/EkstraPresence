@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan Akun</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/pengaturan.css">
+</head>
+<body class="bg-light">
+    <header class="bg-white py-3 mb-4 border-bottom shadow-sm">
+        <div class="container">
+            <h1 class="m-0">Pengaturan</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <nav class="col-md-3 mb-4">
+                <div class="list-group shadow-sm">
+                    <a href="#" class="list-group-item list-group-item-action active" id="profile-link"><i class="fas fa-user"></i> Profil</a>
+                    <a href="#" class="list-group-item list-group-item-action" id="about-link"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                </div>
+            </nav>
+            <div class="col-md-9">
+                <div id="profile-content" class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">Profil</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="profile-picture">Foto Profil</label>
+                                <input type="file" class="form-control-file" id="profile-picture">
+                            </div>
+                            <div class="form-group">
+                                <label for="full-name">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="full-name" placeholder="Nama Lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Ekstrakurikuler</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Kata Sandi</label>
+                                <input type="password" class="form-control" id="password" placeholder="Kata Sandi">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="about-content" class="card shadow-sm" style="display: none;">
+                    <div class="card-body">
+                        <h2 class="card-title">Tentang Kami</h2>
+                        <p>EkstraPresence merupakan sebuah website yang dibuat untuk mengatur sistem absensi ekstrakurikuler. Tujuannya agar para pembina dapat memanagement ekstrakurikuler dan siswa mereka dengan lebih komprehensif.</p>
+                        <h2 class="card-title">Visi</h2>
+                        <p>Menjadi platform terdepan dalam pengelolaan absensi dan kegiatan ekstrakurikuler yang membantu sekolah dalam meningkatkan partisipasi siswa dan efektivitas kegiatan ekstrakurikuler.</p>
+                        <h2 class="card-title">Misi</h2>
+                        <ul>
+                            <li>Menyediakan sistem yang mudah digunakan untuk mencatat dan memantau kehadiran siswa dalam kegiatan ekstrakurikuler.</li>
+                            <li>Memberikan laporan yang komprehensif untuk membantu evaluasi kegiatan ekstrakurikuler.</li>
+                            <li>Meningkatkan partisipasi siswa dalam kegiatan ekstrakurikuler melalui fitur-fitur interaktif dan informatif.</li>
+                        </ul>
+            
+        <!-- Add other sections content here as card elements -->
+    </div>
+</div>
+</div>
+<footer class="py-4 bg-light mt-auto">
+<div class="container-fluid px-4">
+    <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Kelompok 2 2024</div>
+        <div>
+            <a href="#">Privacy Policy</a>
+            &middot;
+            <a href="#">Terms &amp; Conditions</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- FontAwesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!-- Custom JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for the sidebar links
+    const profileLink = document.getElementById('profile-link');
+    const aboutLink = document.getElementById('about-link');
+    
+    const profileContent = document.getElementById('profile-content');
+    const aboutContent = document.getElementById('about-content');
+    
+    function showContent(contentDiv) {
+        // Hide all content divs
+        profileContent.style.display = 'none';
+        aboutContent.style.display = 'none';
+        
+        // Show the selected content div
+        contentDiv.style.display = 'block';
+    }
+    
+    profileLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showContent(profileContent);
+        setActiveLink(profileLink);
+    });
+    
+    aboutLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showContent(aboutContent);
+        setActiveLink(aboutLink);
+    });
+    
+    function setActiveLink(activeLink) {
+        profileLink.classList.remove('active');
+        aboutLink.classList.remove('active');
+        
+        activeLink.classList.add('active');
+    }
+    
+    // Show profile content by default
+    showContent(profileContent);
+    setActiveLink(profileLink);
+});
+</script>
+</body>
+</html>

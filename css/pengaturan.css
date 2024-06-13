@@ -1,0 +1,51 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.list-group-item i {
+    margin-right: 10px;
+}
+
+.card {
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.card-title {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* CSS for Profile and About Us */
+.card-body p {
+    font-size: 14px; /* Mengatur ukuran font pada deskripsi anggota kelompok */
+    font-family: 'Roboto', sans-serif; /* Menggunakan font family yang lebih modern */
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0; /* Atur posisi footer ke kiri */
+    width: 100%;
+}
+

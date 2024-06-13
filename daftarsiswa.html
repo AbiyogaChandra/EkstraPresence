@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Ekstrakurikuler</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: #495057;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            flex-grow: 1;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center mb-5">
+            <h1>Daftar Siswa</h1>
+            <p>Pilih ekstrakurikuler untuk melihat daftar siswa</p>
+        </div>
+        <div class="row" id="extracurricular-list">
+            <!-- Daftar ekstrakurikuler akan ditambahkan di sini -->
+        </div>
+    </div>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Kelompok 2 2024</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Data dummy untuk ekstrakurikuler
+        const extracurriculars = [
+            { id: 1, name: 'Basket' },
+            { id: 2, name: 'Tari' },
+            { id: 3, name: 'Musik' },
+            { id: 4, name: 'Drama' },
+            { id: 5, name: 'Taekwondo' },
+            { id: 6, name: 'Rohis' },
+            { id: 7, name: 'Broadcast' }, // Penambahan ekstrakurikuler Fotografi
+            { id: 8, name: 'Futsal' }, // Penambahan ekstrakurikuler Robotika
+            { id: 9, name: 'Grafika Mountain' } // Penambahan ekstrakurikuler Debat
+        ];
+
+        // Fungsi untuk menambahkan ekstrakurikuler ke daftar
+        function addExtracurricularToList(extracurricular) {
+            const extracurricularList = document.getElementById('extracurricular-list');
+            const card = document.createElement('div');
+            card.classList.add('col-md-6', 'col-lg-4');
+            card.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${extracurricular.name}</h5>
+                        <a href="daftar.html?id=${extracurricular.id}&name=${extracurricular.name}" class="btn btn-primary">Lihat Daftar</a>
+                    </div>
+                </div>
+            `;
+            extracurricularList.appendChild(card);
+        }
+
+        // Muat daftar ekstrakurikuler ketika halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            extracurriculars.forEach(extracurricular => addExtracurricularToList(extracurricular));
+        });
+    </script>
+</body>
+</html>

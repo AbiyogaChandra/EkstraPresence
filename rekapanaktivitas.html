@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekap Absensi Siswa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: #495057;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            flex: 1;
+        }
+
+        .log-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .log-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .log-card .card-body {
+            padding: 30px;
+        }
+
+        .log-card .card-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .log-card .card-text {
+            color: #6c757d;
+            font-size: 16px;
+        }
+
+        .log-card .status-present {
+            color: green;
+            font-weight: bold;
+        }
+
+        .log-card .status-absent {
+            color: red;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #007bff;
+        }
+
+        footer a:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Rekap Absensi Siswa</h1>
+            <p>Riwayat kehadiran siswa dalam kegiatan ekstrakurikuler</p>
+        </div>
+        <div id="log-list" class="row">
+            <!-- Rekapan aktivitas absen akan dimasukkan di sini -->
+        </div>
+    </div>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Kelompok 2 2024</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+        </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Data dummy untuk rekapan aktivitas absen siswa, bisa diganti dengan data dari server atau database
+        const attendanceLogs = [
+            { studentName: 'Budi', date: '2024-05-01', time: '10:00', activity: 'Latihan Basket', status: 'Hadir' },
+            { studentName: 'Budi', date: '2024-05-02', time: '11:00', activity: 'Latihan Futsal', status: 'Tidak Hadir' },
+            { studentName: 'Budi', date: '2024-05-03', time: '09:00', activity: 'Latihan Bulu Tangkis', status: 'Hadir' },
+            { studentName: 'Budi', date: '2024-05-04', time: '13:00', activity: 'Latihan Taekwondo', status: 'Hadir' }
+        ];
+
+        // Fungsi untuk menambahkan log ke daftar
+        function addLogToList(log) {
+            const logList = document.getElementById('log-list');
+            const logCard = document.createElement('div');
+            logCard.classList.add('col-md-6');
+            logCard.innerHTML = `
+                <div class="card log-card">
+                    <div class="card-body">
+                        <h5 class="card-title">${log.activity}</h5>
+                        <p class="card-text">Tanggal: ${log.date}, Waktu: ${log.time}</p>
+                        <p class="card-text">Status: <span class="${log.status === 'Hadir' ? 'status-present' : 'status-absent'}">${log.status}</span></p>
+                    </div>
+                </div>
+            `;
+            logList.appendChild(logCard);
+        }
+
+        // Fungsi untuk memuat rekapan aktivitas absen
+        function loadLogs() {
+            // Memfilter data hanya untuk siswa dengan nama 'Budi'
+            const studentName = 'Budi';
+            const studentLogs = attendanceLogs.filter(log => log.studentName === studentName);
+
+            studentLogs.forEach(log => addLogToList(log));
+        }
+
+        // Muat rekapan aktivitas absen ketika halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', loadLogs);
+    </script>
+</body>
+</html>
