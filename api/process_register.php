@@ -26,6 +26,7 @@
 				$insert = "INSERT INTO tb_akun(nis, email, password, id_profil) VALUES('$nis', '$email', '$pass', '$id_profil')";
 				$result = mysqli_query($conn, $insert);
 				if ($result == true) {
+					$_SESSION['email'] = $email;
 					header('Location: ../index.html');
 				}
 			}
