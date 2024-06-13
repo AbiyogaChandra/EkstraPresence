@@ -1,6 +1,6 @@
 <?php 
 	require "connection.php";
-	//session_start();
+	session_start();
 	
 	if (isset($_SESSION['email'])) {
 		header('Location: ../index.html');
@@ -14,18 +14,21 @@
 		$pass = md5($_POST['inputPassword']);
 		$pass = password_hash($pass, PASSWORD_DEFAULT);
 		
-		echo $nis . "<br>";
-		echo $name . "<br>";
-		echo $email . "<br>";
-		echo $pass . "<br>";
-		
 		$select = " SELECT * FROM tb_akun WHERE email='$email' ";
 		$result = mysqli_query($conn, $select);
 		
 		if (mysqli_num_rows($result) > 0) {
-			
+			header('Location: ../register_siswa.html?errorCode=409');
 		} else {
-			$insert = "INSERT INTO tbl_user(username, email, password) VALUES('$username', '$email', '$pass')";
+			$insert_profil = "INSERT INTO tb_profil(nama) VALUES('$name')";
+			if (mysqli_query($conn, $insert_profil)) {
+				$id_profil = mysqli_insert_id($conn);
+				$insert = "INSERT INTO tb_akun(nis, email, password, id_profil) VALUES('$nis', '$email', '$pass', '$id_profil')";
+				$result = mysqli_query($conn, $insert);
+				if ($result == true) {
+					header('Location: ../index.html');
+				}
+			}
 		}
 	}
 ?>

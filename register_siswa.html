@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -56,6 +60,19 @@
                                                 </div>
                                             </div>
                                             <div class="mt-4 mb-0">
+												<div class="d-grid" style="color: red">
+													<?php
+														require "api/error_codes.php";
+													
+														if (isset($_SESSION['email'])) {
+															header('Location: index.html');
+														}
+														
+														if (isset($_GET['errorCode'])) {
+															echo $error[$_GET['errorCode']];
+														}
+													?>
+												</div>
                                                 <div class="d-grid">
 													<input class="btn btn-primary btn-block" id="submitRegister" name="submitRegister" type="submit" value="Buat Akun">
 												</div>
