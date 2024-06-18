@@ -18,7 +18,7 @@
 		$result = mysqli_query($conn, $select);
 		
 		if (mysqli_num_rows($result) > 0) {
-			header('Location: ../register_siswa.html?errorCode=409');
+			header('Location: ../register.html?errorCode=409');
 		} else {
 			$insert_profil = "INSERT INTO tb_profil(nama) VALUES('$name')";
 			if (mysqli_query($conn, $insert_profil)) {

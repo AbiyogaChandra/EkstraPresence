@@ -104,20 +104,20 @@
         <h1 class="text-center mb-5">Jadwal Pertemuan & Absensi Siswa</h1>
         
         <!-- Form untuk membuat jadwal pertemuan -->
-        <form id="meeting-form">
+        <form id="meeting-form"> <!--action="api/new_meet.php" method="POST"-->
             <div class="form-group">
                 <label for="meeting-date">Tanggal Pertemuan</label>
-                <input type="date" class="form-control" id="meeting-date" required>
+                <input type="date" class="form-control" id="meeting-date" name="meeting-date" required>
             </div>
             <div class="form-group">
                 <label for="meeting-time">Waktu Pertemuan</label>
-                <input type="time" class="form-control" id="meeting-time" required>
+                <input type="time" class="form-control" id="meeting-time" name="meeting-time" required>
             </div>
             <div class="form-group">
                 <label for="meeting-topic">Topik Pertemuan</label>
-                <input type="text" class="form-control" id="meeting-topic" placeholder="Masukkan topik pertemuan" required>
+                <input type="text" class="form-control" id="meeting-topic" name="meeting-topic" placeholder="Masukkan topik pertemuan">
             </div>
-            <button type="submit" class="btn btn-custom-primary btn-block">Buat Jadwal Pertemuan</button>
+            <input type="submit" class="btn btn-primary btn-block" name="submitMeet" value="Buat Jadwal Pertemuan">
         </form>
 
         <hr>
@@ -157,7 +157,7 @@
                 <div class="card-body">
                     <h5 class="card-title">${meeting.topic}</h5>
                     <p class="card-text">Tanggal: ${meeting.date}, Waktu: ${meeting.time}</p>
-                    <button class="btn btn-custom btn-block" onclick="goToAttendance('${meeting.id}')">Absensi Siswa</button>
+                    <button class="btn btn-primary btn-block" onclick="goToAttendance('${meeting.id}')">Absensi Siswa</button>
                 </div>
             `;
             meetingList.appendChild(meetingCard);

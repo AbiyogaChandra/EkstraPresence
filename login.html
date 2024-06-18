@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	
+	if (isset($_SESSION['email'])) {
+		header('Location: index.html');
+	}
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +44,6 @@
 											<div class="form-floating mb-3" style="color: red">
 												<?php
 													require "api/error_codes.php";
-												
-													if (isset($_SESSION['email'])) {
-														header('Location: index.html');
-													}
 												
 													if (isset($_GET['errorCode'])) {
 														echo $error[$_GET['errorCode']];
