@@ -30,10 +30,10 @@
 			}
 		}
 		if (isset($_POST['password'])) {
-			$password = md5($_POST['password']);
-			$password = password_hash($password, PASSWORD_DEFAULT);
-			$query = "UPDATE tb_akun SET password='$password' WHERE id='$id'";
-			$result = mysqli_query($conn, $query);
+			//$password = md5($_POST['password']);
+			//$password = password_hash($password, PASSWORD_DEFAULT);
+			//$query = "UPDATE tb_akun SET password='$password' WHERE id='$id'";
+			//$result = mysqli_query($conn, $query);
 		}
 	}
 	header('Location: ../pengaturan.html');
