@@ -1,3 +1,9 @@
+<?php
+	require "api/connection.php";
+	session_start();
+	$id_akun = $_SESSION['id'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,24 +32,52 @@
                 <div id="profile-content" class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title">Profil</h2>
-                        <form>
+                        <form action="api/process_update_profile.php" method="POST">
                             <div class="form-group">
                                 <label for="profile-picture">Foto Profil</label>
                                 <input type="file" class="form-control-file" id="profile-picture">
                             </div>
                             <div class="form-group">
                                 <label for="full-name">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="full-name" placeholder="Nama Lengkap">
+								<?php
+									$select = " SELECT * FROM tb_akun WHERE id='$id_akun' ";
+									$result = mysqli_query($conn, $select);
+									$row = mysqli_fetch_row($result);
+									
+									$id_profil = $row[4];
+									
+									$select = " SELECT * FROM tb_profil WHERE id='$id_profil' ";
+									$result = mysqli_query($conn, $select);
+									$row = mysqli_fetch_row($result);
+									
+									$nama = $row[1];
+								?>
+                                <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Nama Lengkap" value="<?php echo $nama; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="email">Ekstrakurikuler</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <label>Ekstrakurikuler</label>
+								<?php
+									$query = "SELECT * FROM tb_ekstrakurikuler";
+									$result = mysqli_query($conn, $query);
+									while ($data = mysqli_fetch_array($result)) {
+										$id = $data['id'];
+										$nama = $data['nama'];
+										$query2 = "SELECT * FROM tb_ekstra_terikut WHERE id_akun='$id_akun' AND id_ekstra='$id'";
+										$result2 = mysqli_query($conn, $query2);
+										$joined = (mysqli_num_rows($result2) > 0) ? "checked" : "";
+										?>
+										<br>
+										<input type="checkbox" name="ekstrakurikuler[]" id="<?php echo 'ekstra' . $id; ?>" value="<?php echo $id; ?>" <?php echo $joined; ?>>
+										<label for="<?php echo 'ekstra' . $id; ?>"><?php echo $nama; ?></label>
+										<?php
+									}
+								?>
                             </div>
                             <div class="form-group">
                                 <label for="password">Kata Sandi</label>
-                                <input type="password" class="form-control" id="password" placeholder="Kata Sandi">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Kata Sandi">
                             </div>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <input type="submit" class="btn btn-primary" name="submitProfile" value="Simpan Perubahan">
                         </form>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 	require "connection.php";
 	session_start();
 	
-	if (isset($_SESSION['email'])) {
+	if (isset($_SESSION['id'])) {
 		header('Location: ../index.html');
 	}
 	
@@ -24,9 +24,9 @@
 			if (mysqli_query($conn, $insert_profil)) {
 				$id_profil = mysqli_insert_id($conn);
 				$insert = "INSERT INTO tb_akun(nis, email, password, id_profil) VALUES('$nis', '$email', '$pass', '$id_profil')";
-				$result = mysqli_query($conn, $insert);
-				if ($result == true) {
-					$_SESSION['email'] = $email;
+				if (mysqli_query($conn, $insert)) {
+					$id_akun = mysqli_insert_id($conn);
+					$_SESSION['id'] = $id_akun;
 					header('Location: ../index.html');
 				}
 			}

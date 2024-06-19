@@ -2,7 +2,7 @@
 	require "connection.php";
 	session_start();
 	
-	if (isset($_SESSION['email'])) {
+	if (isset($_SESSION['id'])) {
 		header('Location: ../index.html');
 	}
 	
@@ -16,7 +16,8 @@
 		if (mysqli_num_rows($result) > 0) {
 			$row = mysqli_fetch_row($result);
 			if (password_verify($pass, $row[3])) {
-				$_SESSION['email'] = $email;
+				$id_akun = $row[0];
+				$_SESSION['id'] = $id_akun;
 				header('Location: ../index.html');
 			} else {
 				header('Location: ../login.html?errorCode=401');

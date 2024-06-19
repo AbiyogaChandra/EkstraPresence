@@ -104,7 +104,7 @@
         <h1 class="text-center mb-5">Jadwal Pertemuan & Absensi Siswa</h1>
         
         <!-- Form untuk membuat jadwal pertemuan -->
-        <form id="meeting-form"> <!--action="api/new_meet.php" method="POST"-->
+        <form id="meeting-form" name="meeting-form" action="api/process_create_pertemuan.php" method="POST">
             <div class="form-group">
                 <label for="meeting-date">Tanggal Pertemuan</label>
                 <input type="date" class="form-control" id="meeting-date" name="meeting-date" required>
