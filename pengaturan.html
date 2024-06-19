@@ -52,7 +52,7 @@
 									
 									$nama = $row[1];
 								?>
-                                <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Nama Lengkap" value="<?php echo $nama; ?>">
+                                <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Nama Lengkap" maxlength="30" value="<?php echo $nama; ?>">
                             </div>
                             <div class="form-group">
                                 <label>Ekstrakurikuler</label>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Kata Sandi</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Kata Sandi">
+                                <input type="password" class="form-control" id="password" name="password" maxlength="60" placeholder="Kata Sandi">
                             </div>
                             <input type="submit" class="btn btn-primary" name="submitProfile" value="Simpan Perubahan">
                         </form>
