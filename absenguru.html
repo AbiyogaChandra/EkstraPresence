@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if (!(isset($_SESSION['id']))) {
+		header('Location: login.html');
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,18 +110,17 @@
             window.location.href = 'index.html'; // Ganti 'index.html' dengan halaman beranda yang sesuai
         }
 
+		const students = [
+            { id: 1, name: 'Siswa 1', status: 'Hadir' },
+            { id: 2, name: 'Siswa 2', status: 'Tidak Hadir' },
+            { id: 3, name: 'Siswa 3', status: 'Hadir' },
+            { id: 4, name: 'Siswa 4', status: 'Hadir' }
+        ];
+
         // Fungsi untuk memuat data absensi siswa
         function loadAttendance() {
             // Ambil ID pertemuan dari localStorage
-            const meetingId = localStorage.getItem('meetingId');
-
-            // Data dummy siswa, ini bisa diganti dengan data dari server atau database
-            const students = [
-                { id: 1, name: 'Siswa 1', status: 'Hadir' },
-                { id: 2, name: 'Siswa 2', status: 'Tidak Hadir' },
-                { id: 3, name: 'Siswa 3', status: 'Hadir' },
-                { id: 4, name: 'Siswa 4', status: 'Hadir' }
-            ];
+            //const meetingId = localStorage.getItem('meetingId');
 
             const studentList = document.getElementById('student-list');
             studentList.innerHTML = '';
@@ -126,15 +132,15 @@
                     <td>${student.name}</td>
                     <td>${student.status}</td>
                     <td>
-                        <button class="btn btn-custom" onclick="toggleAttendance(${student.id})">Ganti Status</button>
+                        <button class="btn btn-primary" onclick="toggleAttendance(${student.id})">Ganti Status</button>
                     </td>
                 `;
                 studentList.appendChild(row);
             });
 
             // Menampilkan informasi pertemuan
-            const meetingInfo = document.getElementById('meeting-info');
-            meetingInfo.textContent = `Pertemuan ID: ${meetingId}`;
+            //const meetingInfo = document.getElementById('meeting-info');
+            //meetingInfo.textContent = `Pertemuan ID: ${meetingId}`;
         }
 
         // Fungsi untuk mengganti status kehadiran siswa

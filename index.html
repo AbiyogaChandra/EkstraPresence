@@ -1,3 +1,10 @@
+<?php
+	session_start();
+	if (!(isset($_SESSION['id']))) {
+		header('Location: login.html');
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,7 +39,7 @@
                         <li><a class="dropdown-item" href="pengaturan.html">Pengaturan</a></li>
                         <li><a class="dropdown-item" href="rekapanaktivitas.html">Rekapan Aktivitas</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                        <li><a class="dropdown-item" href="api/process_logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
