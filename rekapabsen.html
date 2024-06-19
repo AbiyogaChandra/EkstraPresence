@@ -124,7 +124,28 @@
 
         <!-- Daftar pertemuan -->
         <h2 class="text-center mb-4">Daftar Pertemuan</h2>
-        <div id="meeting-list"></div>
+        <div id="meeting-list">
+			<?php
+				require "api/connection.php";
+				
+				$select = "SELECT * FROM tb_pertemuan";
+				$result = mysqli_query($conn, $select);
+				
+				while ($data = mysqli_fetch_array($result)) {
+					$topic = $data['topic'];
+					$datetime = $data['datetime'];
+					$date = date("Y-m-d", strtotime($datetime));
+					$time = date("H:i", strtotime($datetime));
+					?>
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $topic; ?></h5>
+						<p class="card-text">Tanggal: <?php echo $date; ?>, Waktu: <?php echo $time; ?></p>
+						<button class="btn btn-primary btn-block">Absensi Siswa</button>
+					</div>
+					<?php
+				}
+			?>
+		</div>
     </div>
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
@@ -145,7 +166,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Array untuk menyimpan data pertemuan
+        /*/ Array untuk menyimpan data pertemuan
         let meetings = [];
 
         // Fungsi untuk menambahkan pertemuan ke daftar
@@ -192,7 +213,7 @@
             localStorage.setItem('meetingId', meetingId);
             // Arahkan ke halaman absensi siswa
             window.location.href = 'attendance.html'; // Ganti 'attendance.html' dengan halaman sesuai kebutuhan
-        }
+        }*/
     </script>
 </body>
 </html>
