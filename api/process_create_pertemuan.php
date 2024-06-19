@@ -16,5 +16,5 @@
 		$result = mysqli_query($conn, $query);
 	}
 	
-	header('Location: ../process_create_pertemuan.php');
+	header('Location: ../rekapabsen.html');
 ?>
